@@ -41,8 +41,6 @@ const ViewAll = () => {
                                     <p className="card-text">Title : {value.title}</p>
                                     <p className="card-text">Price : {value.price}</p>
                                     <p className="card-text">Description : {value.description}</p>
-                                    <p className="card-text">Image : {value.image}</p>
-                                    <p className="card-text">Description :Rating {value.rating}</p>
                                     <a href="#" class="btn btn-primary">Buy Now</a>
                                 </div>
                             </div> 
