@@ -3,45 +3,47 @@ import Navbar from './Navbar'
 import axios from 'axios'
 
 const ViewAll = () => {
-    const [data,changeData]=useState([])
-        const fetchData=()=>{
-            axios.get("https://fakestoreapi.com/products").then(
-                (response)=>{
-                    console.log(response.data)
-                    changeData(response.data)
-                }
-            ).catch().finally()
-
+    const [data, changeData] = useState([
+        {
+            "id": "101",
+            "title": "Phone",
+            "description": "Samsung S24",
+            "category": "Gadget",
+            "image": "data:image/jpeg;base64,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",
+            "rating": "9.4",
+            "noofstock": "8"
         }
-        useEffect(()=>{fetchData()},[])
-  return (
-    <div>
-        <div className="container">
-            <Navbar/>
-            <div className="row col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
-                <div className="row g-3">
-                    {data.map
-                    (
-                        (value,index)=>{
-                            return <div className="col col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3">
-                            <div className="card">
-                                <img src={value.image} height="300px" class="card-img-top" alt="..." />
-                                <div className="card-body">
-                                    <h5 className="card-title">{value.id}</h5>
-                                    <p className="card-text">Title : {value.title}</p>
-                                    <p className="card-text">Price : {value.price}</p>
-                                    <p className="card-text">Description : {value.description}</p>
-                                    <a href="#" class="btn btn-primary">Buy Now</a>
-                                </div>
-                            </div> 
-                            </div>
-                        }
-                    )}
+    ])
+    return (
+        <div>
+            <div className="container">
+                <Navbar />
+                <div className="row col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+                    <div className="row g-3">
+                        {data.map
+                            (
+                                (value, index) => {
+                                    return <div className="col col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3">
+                                        <div className="card">
+                                            <img src={value.image} height="300px" class="card-img-top" alt="..." />
+                                            <div className="card-body">
+                                                <h5 className="card-title">{value.id}</h5>
+                                                <p className="card-text">Title : {value.title}</p>
+                                                <p className="card-text">Title : {value.description}</p>
+                                                <p className="card-text">Price : {value.category}</p>
+                                                <p className="card-text">Description : {value.rating}</p>
+                                                <p className="card-text">Description : {value.noofstock}</p>
+                                                <a href="#" class="btn btn-primary">Buy Now</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            )}
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-  )
+    )
 }
 
 export default ViewAll
